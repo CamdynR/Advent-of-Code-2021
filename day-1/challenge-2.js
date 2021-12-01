@@ -1,4 +1,4 @@
-// script.js
+// challenge-2.js
 
 const fs = require('fs');
 
