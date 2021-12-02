@@ -4,6 +4,8 @@
 ![2 stars](https://img.shields.io/badge/stars%20⭐-2-yellow)
 ![1 day completed](https://img.shields.io/badge/days%20completed-1-red)
 
-2 coding challenges every day from December 1st through December 25th
+2 coding challenges every day from December 1st through December 25th.
+
+1 star for each coding challenge completed.
 
 [https://adventofcode.com/](https://adventofcode.com/)
