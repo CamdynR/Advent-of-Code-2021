@@ -28,6 +28,8 @@ module.exports = class Board {
    * @param {number} num the new number that was called
    */
   callNumber(num) {
+    // Don't add any numbers after the board has won
+    if (this.checkWinner()) return;
     // Don't count the same number twice
     if (this.numsCalled.includes(num)) return;
     // Add the new number to the numbers that have been called
