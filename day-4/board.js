@@ -7,6 +7,7 @@ module.exports = class Board {
   constructor() {
     this.board = [];
     this.numsCalled = [];
+    this.winner = false;
     this.sums = {
       rows: [0,0,0,0,0], // top to bottom
       columns: [0,0,0,0,0], // left to right
@@ -29,7 +30,7 @@ module.exports = class Board {
    */
   callNumber(num) {
     // Don't add any numbers after the board has won
-    if (this.checkWinner()) return;
+    if (this.winner) return;
     // Don't count the same number twice
     if (this.numsCalled.includes(num)) return;
     // Add the new number to the numbers that have been called
@@ -55,7 +56,8 @@ module.exports = class Board {
     const highestRow = Math.max(...this.sums.rows);
     const highestColumn = Math.max(...this.sums.columns);
     const highestDiag = Math.max(...this.sums.diagonals);
-    return (highestRow == 5 || highestColumn == 5 || highestDiag == 5);
+    this.winner = (highestRow == 5 || highestColumn == 5 || highestDiag == 5);
+    return this.winner;
   }
 
   /**
