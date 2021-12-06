@@ -1,8 +1,8 @@
 # Advent of Code - 2021
 
-![Fourth day](https://img.shields.io/badge/day%20-4-blue)
-![8 stars](https://img.shields.io/badge/stars%20⭐-8-orange)
-![4 days completed](https://img.shields.io/badge/days%20completed-4-purple)
+![Fifth day](https://img.shields.io/badge/day%20-5-blue)
+![10 stars](https://img.shields.io/badge/stars%20⭐-10-orange)
+![5 days completed](https://img.shields.io/badge/days%20completed-5-purple)
 
 2 coding challenges every day from December 1st through December 25th.
 
