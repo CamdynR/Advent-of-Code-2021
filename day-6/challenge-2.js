@@ -2,17 +2,14 @@
 
 const fs = require('fs');
 
-// Read in the input text, then split it by return character
+// Read in the input text and create an array from it
 let input = fs.readFileSync('input.txt', 'utf-8').split(',');
 input = input.map(str => Number(str));
 
-// The current amount of fish
-const currFish = [0,0,0,0,0,0,0,0,0];
-
-// Add the current fish counts from the input
-input.forEach(fish => {
-  currFish[fish] += 1;
-});
+// Where the current amount of fish will be stored
+const currFish = new Array(9).fill(0);
+// Add the current fish counts to the empty array
+input.forEach(fish => currFish[fish] += 1);
 
 /**
  * Waits the supplied number of days and creates fish accordingly
@@ -21,12 +18,14 @@ input.forEach(fish => {
  */
 function waitNDays(numDays) {
   for (let i = 0; i < numDays; i++) {
-    const newFish = currFish.shift();
-    currFish.push(newFish);
-    currFish[6] += newFish;
+    // The number of babies == the number of former day 0 fish
+    currFish.push(currFish.shift());
+    // Since the number of babies is the same as day 0,
+    // add that to day 6 to reset their counter
+    currFish[6] += currFish[currFish.length - 1];
   }
-  const reducer = (prev, curr) => prev + curr;
-  return currFish.reduce(reducer);
+  // Return the sum of all the fish
+  return currFish.reduce((prev, curr) => prev + curr);
 }
 
 console.log(waitNDays(256));
