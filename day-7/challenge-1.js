@@ -11,9 +11,9 @@ input = input.sort((a,b) => a - b);
 // Grab the median
 let median = input[Math.floor(input.length/2)];
 // Sum the difference between each value and the median
-let sumDiff = 0;
+let fuelSum = 0;
 input.forEach(num => {
-  sumDiff += Math.abs(num - median);
+  fuelSum += Math.abs(num - median);
 });
 // Log the answer
-console.log(`Answer: ${sumDiff}`);
+console.log(`Answer: ${fuelSum}`);
