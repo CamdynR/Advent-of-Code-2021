@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 
-// Read in the input text, then split it by return character
+// Read in the input text, then split it by the comma character
 let input = fs.readFileSync('input.txt', 'utf-8').split(',');
 input = input.map(str => Number(str));
 
