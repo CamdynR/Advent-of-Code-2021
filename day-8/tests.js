@@ -1,67 +1,3 @@
-// challenge-2.js
-
-const fs = require('fs');
-
-// Initialize the program
-init();
-
-function init() {
-  const data = parseInput('input.txt', '\n');
-  console.log(`Answer: ${decodeAndSumOutputs(data)}`);
-}
-
-function parseInput(filename, splitChar) {
-  // Read in the input text, then split it by the return \n character
-  let data = fs.readFileSync(filename, 'utf-8').split(splitChar);
-  // Split data into "input" and "output" for easy parsing
-  return data.map(str => {
-    return {
-      input: str.split(' | ')[0].split(' '),
-      output: str.split(' | ')[1].split(' ')
-    };
-  });
-}
-
-function decodeAndSumOutputs(data) {
-  let inputSum = 0; // holds the sum of all of the answers
-  data.forEach(entry => {
-    entry.input = entry.input.sort((a, b) => a.length - b.length);
-    const digits = populateDigits(entry.input);
-    let outputVal = '';
-    entry.output.forEach(num => {
-      Object.keys(digits).forEach(digit => {
-        let diff = findDifference(num, digit);
-        if (diff[num].length == 0 && diff[digit].length == 0) {
-          outputVal += digits[digit];
-        }
-      });
-    });
-    inputSum += Number(outputVal);
-  });
-
-  // Return the final answer
-  return inputSum;
-}
-
-function populateDigits(input) {
-  const digits = {};
-  digits[input[0]] = 1; // 1
-  digits[input[2]] = 4; // 4
-  digits[input[1]] = 7; // 7
-  digits[input[9]] = 8; // 8
-  let six = findSix(input);
-  digits[six] = 6; // 6
-  let five = findFive(six, input);
-  digits[five] = 5; // 5
-  let twoAndThree = findTwoAndThree(five, input);
-  digits[twoAndThree['two']] = 2; // 2
-  digits[twoAndThree['three']] = 3; // 3
-  let zeroAndNine = findZeroAndNine(twoAndThree['three'], six, input);
-  digits[zeroAndNine['zero']] = 0; // 0
-  digits[zeroAndNine['nine']] = 9; // 9
-  return digits;
-}
-
 function findDifference(str1, str2) {
   let strDiff = {};
   strDiff[str1] = '';
@@ -130,3 +66,48 @@ function findZeroAndNine(three, six, input) {
   }
   return zeroAndNine;
 }
+
+function populateDigits(input) {
+  const digits = {};
+  digits[input[0]] = 1; // 1
+  digits[input[2]] = 4; // 4
+  digits[input[1]] = 7; // 7
+  digits[input[9]] = 8; // 8
+  let six = findSix(input);
+  digits[six] = 6; // 6
+  let five = findFive(six, input);
+  digits[five] = 5; // 5
+  let twoAndThree = findTwoAndThree(five, input);
+  digits[twoAndThree['two']] = 2; // 2
+  digits[twoAndThree['three']] = 3; // 3
+  let zeroAndNine = findZeroAndNine(twoAndThree['three'], six, input);
+  digits[zeroAndNine['zero']] = 0; // 0
+  digits[zeroAndNine['nine']] = 9; // 9
+  return digits;
+}
+
+let input = ['ab', 'dab', 'eafb', 'gcdfa', 'fbcad', 'cdfbe',
+  'cagedb', 'cefabd', 'cdfgeb', 'acedgfb'];
+
+let zero = 'cagedb';
+let one = 'ab';
+let two = 'gcdfa';
+let three = 'fbcad';
+let four = 'eafb';
+let five = 'cdfbe';
+let six = 'cdfgeb';
+let seven = 'dab';
+let eight = 'acedgfb';
+let nine = 'cefabd';
+
+const digits = populateDigits(input);
+console.log(`Checking Zero: ${digits[zero]} == 0`);
+console.log(`Checking One: ${digits[one]} == 1`);
+console.log(`Checking Two: ${digits[two]} == 2`);
+console.log(`Checking Three: ${digits[three]} == 3`);
+console.log(`Checking Four: ${digits[four]} == 4`);
+console.log(`Checking Five: ${digits[five]} == 5`);
+console.log(`Checking Six: ${digits[six]} == 6`);
+console.log(`Checking Seven: ${digits[seven]} == 7`);
+console.log(`Checking Eight: ${digits[eight]} == 8`);
+console.log(`Checking Nine: ${digits[nine]} == 9`);

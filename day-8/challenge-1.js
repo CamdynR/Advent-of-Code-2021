@@ -1,20 +1,43 @@
 // challenge-1.js
 
 const fs = require('fs');
+// All of the number of segments that are unique
+const uniqueLengths = [2, 3, 4, 7];
 
-const uniqueLengths = [2,3,4,7];
+// Initialize the program
+init();
 
-// Read in the input text, then split it by the comma character
-let input = fs.readFileSync('input.txt', 'utf-8').split('\n');
-input = input.map(str => str.split('|')[1]).map(str => str.split(' '));
-input = input.filter(arr => arr.splice(0,1));
-let numUnique = 0;
-input.forEach(arr => {
-  arr.forEach(str => {
-    if (uniqueLengths.includes(str.length)) {
-      numUnique += 1;
-    }
+/**
+ * Initializing function, the program begins here
+ */
+function init() {
+  // Grab the input from the text file
+  const input = parseInput('input.txt', '\n');
+  // Count how many unique numbers there are in the outputs
+  console.log(`Answer: ${countUniqueNums(input)}`);
+}
+
+/**
+ * Grabs the inputs from input.txt, then parses them and returns the
+ * outputs only
+ * @param {string} filename The filename of the input to parse
+ * @param {string} splitChar The character(s) to split the lines by
+ * @returns {array} An array of outputs only
+ */
+function parseInput(filename, splitChar) {
+  let input = fs.readFileSync(filename, 'utf-8').split(splitChar);
+  input = input.map(str => str.split('|')[1]).map(str => str.split(' '));
+  return input.filter(arr => arr.splice(0, 1));
+}
+
+function countUniqueNums(input) {
+  let numUnique = 0;
+  input.forEach(arr => {
+    arr.forEach(str => {
+      if (uniqueLengths.includes(str.length)) {
+        numUnique += 1;
+      }
+    });
   });
-});
-
-console.log(`Answer: ${numUnique}`);
+  return numUnique;
+}
