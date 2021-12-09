@@ -25,11 +25,17 @@ function init() {
  * @returns {array} An array of outputs only
  */
 function parseInput(filename, splitChar) {
+  // Reads in the file as a string, splits along splitChar for each line
   let input = fs.readFileSync(filename, 'utf-8').split(splitChar);
-  input = input.map(str => str.split('|')[1]).map(str => str.split(' '));
-  return input.filter(arr => arr.splice(0, 1));
+  // Splits each line along | and takes only the right half, then splits by space
+  return input.map(str => str.split(' | ')[1]).map(str => str.split(' '));
 }
 
+/**
+ * 
+ * @param {array} input 
+ * @returns {number} Number of unique
+ */
 function countUniqueNums(input) {
   let numUnique = 0;
   input.forEach(arr => {
