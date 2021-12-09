@@ -1,3 +1,9 @@
+/**
+ * tests.js
+ * 
+ * a simple scratch file for testing
+ */
+
 function findDifference(str1, str2) {
   let strDiff = {};
   strDiff[str1] = '';

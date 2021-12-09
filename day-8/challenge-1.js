@@ -32,14 +32,16 @@ function parseInput(filename, splitChar) {
 }
 
 /**
- * 
- * @param {array} input 
- * @returns {number} Number of unique
+ * Counts the number of uniquely length'd numbers in the output
+ * @param {array} input the output split from the input in the input.txt
+ * @returns {number} Number of unique length numbers
  */
 function countUniqueNums(input) {
+  // The sum of unique numbers
   let numUnique = 0;
   input.forEach(arr => {
     arr.forEach(str => {
+      // Check the unique length list to see if it matches
       if (uniqueLengths.includes(str.length)) {
         numUnique += 1;
       }
