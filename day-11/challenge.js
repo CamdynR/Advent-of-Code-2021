@@ -97,7 +97,7 @@ function incrementStep(input) {
             input[i][j+1] += 1;
           }
           // South East
-          if (i < input.length - 1 && j < input[i+1].length - 1 &&input[i+1][j+1] != 0) {
+          if (i < input.length - 1 && j < input[i+1].length - 1 && input[i+1][j+1] != 0) {
             input[i+1][j+1] += 1;
           }
           // South
