@@ -9,26 +9,44 @@ init();
  * Initializing function, the program begins here
  */
 function init() {
+  challenge1();
+  challenge2();
+}
+
+/**
+ * The first challenge is to increment each 2D array 100 times and count how
+ * many flashes occur. For each step, every number is incremented by one. A
+ * flash occurs every time a number grows larger than nine, which often causes
+ * a domino affect on the surrounding squares (all 8 squares around are counted)
+ */
+function challenge1() {
   // First Challenge
-  let challenge1 = parseInput('input.txt', '\n');
+  let input = parseInput('input.txt', '\n');
   // Run the input through the step incrementer 100 times
   let numFlashes = 0;
   for (let i = 0; i < 100; i++) {
-    let output = incrementStep(challenge1);
+    let output = incrementStep(input);
     numFlashes += output.numFlashes; // update numFlashes
-    challenge1 = output.newInput; // update the new state of the input
+    input = output.newInput; // update the new state of the input
   }
   // Log the answer
   console.log(`Challenge 1: ${numFlashes}`);
+}
 
+/**
+ * The second challenge is to count how many steps it takes for the entire board
+ * to sync up and flash at the exact same time (essentially - when the board is
+ * entirely zeros)
+ */
+function challenge2() {
   // Second Challenge
-  let challenge2 = parseInput('input.txt', '\n');
+  let input = parseInput('input.txt', '\n');
   // Run the input through the step incrementer n times until it syncs
   let numSteps = 0;
   // It's safe the assume that the input is a rectangle here
-  while(countNum(challenge2, 0) != (challenge2.length * challenge2[0].length)) {
+  while(countNum(input, 0) != (input.length * input[0].length)) {
     numSteps += 1;
-    challenge2 = incrementStep(challenge2).newInput;
+    input = incrementStep(input).newInput;
   }
   // Log the answer
   console.log(`Challenge 2: ${numSteps}`);
