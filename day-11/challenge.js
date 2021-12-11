@@ -20,7 +20,6 @@ function init() {
  * a domino affect on the surrounding squares (all 8 squares around are counted)
  */
 function challenge1() {
-  // First Challenge
   let input = parseInput('input.txt', '\n');
   // Run the input through the step incrementer 100 times
   let numFlashes = 0;
@@ -39,7 +38,6 @@ function challenge1() {
  * entirely zeros)
  */
 function challenge2() {
-  // Second Challenge
   let input = parseInput('input.txt', '\n');
   // Run the input through the step incrementer n times until it syncs
   let numSteps = 0;
